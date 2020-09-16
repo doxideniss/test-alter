@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../redux/reducers/auth";
+import localStorageService from "../utils/localStorageService";
 
 const Login = () => {
   let history = useHistory();
@@ -23,6 +24,7 @@ const Login = () => {
     e.preventDefault();
     if (login === 'Admin' && password === '12345') {
       dispatch(setAuth(true));
+      localStorageService.login();
       history.push('/profile');
     } else {
       setFormError('Имя пользователя или пароль введены неверно');

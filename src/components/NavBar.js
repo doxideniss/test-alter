@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuth } from "../redux/reducers/auth";
+import localStorageService from "../utils/localStorageService";
 
 const NavBar = () => {
   const dispath = useDispatch();
@@ -9,6 +10,7 @@ const NavBar = () => {
 
   const logout = () => {
     dispath(setAuth(false));
+    localStorageService.logout();
   };
 
   return (
