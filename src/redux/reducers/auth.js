@@ -1,4 +1,4 @@
-const SET_IS_AUTH = 'SET_NEWS';
+const SET_IS_AUTH = 'SET_IS_AUTH';
 
 const initialState = {
   isAuth: false

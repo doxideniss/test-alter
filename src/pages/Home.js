@@ -2,12 +2,23 @@ import React from 'react';
 import { Route, Switch } from "react-router-dom";
 
 import { Main, NavBar, News, Profile } from "../components";
+import { createUseStyles } from "react-jss";
+
+const useStyles = createUseStyles({
+  main: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '20px',
+  }
+});
 
 const Home = () => {
+  const classes = useStyles();
+
   return (
     <div>
       <NavBar/>
-      <main>
+      <main className={classes.main}>
         <Switch>
           <Route path="/news">
             <News/>

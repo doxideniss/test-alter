@@ -5,8 +5,30 @@ import { useDispatch } from "react-redux";
 import { Home, Login } from "./pages";
 import { localStorageService } from "./utils";
 import { setAuth } from "./redux/reducers/auth";
+import { createUseStyles } from "react-jss";
+
+const useStyles = createUseStyles({
+  '@global': {
+    body: {
+      fontSize: '18px'
+    },
+    a: {
+      textDecoration: 'none',
+    },
+    ul: {
+      listStyle: 'none'
+    },
+    '*': {
+      padding: '0',
+      margin: '0',
+      outline: 'none',
+      boxSizing: 'border-box'
+    }
+  }
+});
 
 function App() {
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -16,7 +38,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <>
       <Switch>
         <Route path="/login">
           <Login/>
@@ -25,7 +47,7 @@ function App() {
           <Home/>
         </Route>
       </Switch>
-    </div>
+    </>
   );
 }
 

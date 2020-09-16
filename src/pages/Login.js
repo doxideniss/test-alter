@@ -1,11 +1,41 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
 import { setAuth } from "../redux/reducers/auth";
 import localStorageService from "../utils/localStorageService";
+import { createUseStyles } from "react-jss";
+
+const useStyles = createUseStyles({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100vh'
+  },
+  form: {
+    width: '400px',
+    textAlign: 'center'
+  },
+  input: {
+    width: '100%',
+    padding: '10px 20px',
+    marginBottom: '20px'
+  },
+  button: {
+    width: '100%',
+    padding: '10px 20px',
+  },
+  err: {
+    color: 'red',
+    marginBottom: '10px'
+  }
+});
 
 const Login = () => {
   let history = useHistory();
+  const classes = useStyles();
   const dispatch = useDispatch();
   const [login, setLogin] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -31,23 +61,25 @@ const Login = () => {
     }
   };
   return (
-    <div>
-      <form onSubmit={submitHandler}>
-        <input type="text"
+    <div className={classes.root}>
+      <form className={classes.form} onSubmit={submitHandler}>
+        <input className={classes.input}
+               type="text"
                placeholder="Логин"
                onChange={changeHandler('login')}
                value={login}
         />
-        <input type="password"
+        <input className={classes.input}
+               type="password"
                placeholder="Пароль"
                onChange={changeHandler('password')}
                value={password}
         />
         { formError && (
-          <p>{ formError }</p>
+          <p className={classes.err}>{ formError }</p>
         )
         }
-        <button type="submit">Войти</button>
+        <button className={classes.button} type="submit">Войти</button>
       </form>
     </div>
   );
